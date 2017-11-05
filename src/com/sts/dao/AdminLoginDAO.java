@@ -2,8 +2,6 @@ package com.sts.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.mysql.jdbc.PreparedStatement;
 
 public class AdminLoginDAO extends BasicDAO{

@@ -8,18 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.sts.dao.AdminLoginDAO;
+import com.sts.manager.impl.ExamManagerIMP;
+import com.sts.vo.ExamAddVO;
 
 public class Tools {
 	
 	public static void main(String[] args){
-		AdminLoginDAO adminDAO = new AdminLoginDAO();
+		ExamManagerIMP que_list = new ExamManagerIMP();
 		try {
-			String password = adminDAO.getPassword("admin");
-			System.out.println("admin password is "+ password);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			List<ExamAddVO> list = que_list.getExamList();
+			ExamAddVO vo;
+			for(int i=0;i<list.size();i++){
+				vo = list.get(i);
+				System.out.println(vo.getId());
+				System.out.println(vo.getContans());
+				System.out.println(vo.getAnswerA());
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

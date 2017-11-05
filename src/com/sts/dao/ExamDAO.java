@@ -1,6 +1,9 @@
 package com.sts.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -21,10 +24,25 @@ public class ExamDAO extends BasicDAO{
 		this.closeConnection();
 	}
 	
-	public static void getExamList(ExamAddVO vo){
-		String sql = "SELECT * FROM exam ORDER BY id";
-
-		
+	public  List<ExamAddVO> getExamList() throws ClassNotFoundException, SQLException{
+		List<ExamAddVO> list = new ArrayList<ExamAddVO>();
+		String sql = "select id, contans,answerA,answerB,answerC,answerD,answer from exam order by id";
+		Statement tm = getStatement();
+		ResultSet rs = tm.executeQuery(sql);
+		ExamAddVO vo;
+		while(rs.next()){
+			vo = new ExamAddVO();
+			vo.setId(rs.getInt("id"));
+			vo.setContans(rs.getString("contans"));
+			vo.setAnswerA(rs.getString("answerA"));
+			vo.setAnswerB(rs.getString("answerB"));
+			vo.setAnswerC(rs.getString("answerC"));
+			vo.setAnswerD(rs.getString("answerD"));
+			vo.setAnswer(rs.getString("answer"));
+			list.add(vo);
+		}	
+		this.closeConnection();
+		return list;
 	}
 	
 }

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.sts.vo.ExamAddVO"%>
 
 <!DOCTYPE html>
 <html>
@@ -96,8 +97,6 @@ function add_question(){
 				<th>正确答案</th>
 				<th>操作</th>
 			</thead>
-			
-		
 				<tr align="center">
 					<td>1111111</td>					
 					<td>2222222222</td>
@@ -108,54 +107,25 @@ function add_question(){
 					<td>7777777</td>
 					<td ><i>删除</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>编辑</i></td>
 				</tr>
-				
-				<tr align="center">
-					<td>1111111</td>					
-					<td>2222222222</td>
-					<td>3333333</td>
-					<td>4444444444</td>
-					<td>55555555</td> 
-					<td>6666666666</td>
-					<td>7777777</td>
-					<td ><i>删除</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>编辑</i></td>
 				</tr>
-				
-				<tr align="center">
-					<td>1111111</td>					
-					<td>2222222222</td>
-					<td>3333333</td>
-					<td>4444444444</td>
-					<td>55555555</td> 
-					<td>6666666666</td>
-					<td>7777777</td>
-					<td ><i>删除</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>编辑</i></td>
-				</tr>
-				
-				
-				
-				<tr align="center">
-					<td>1111111</td>					
-					<td>2222222222</td>
-					<td>3333333</td>
-					<td>4444444444</td>
-					<td>55555555</td> 
-					<td>6666666666</td>
-					<td>7777777</td>
-					<td ><i>删除</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>编辑</i></td>
-				</tr>
-				
-				
-				
-				<tr align="center">
-					<td>1111111</td>					
-					<td>2222222222</td>
-					<td>3333333</td>
-					<td>4444444444</td>
-					<td>55555555</td> 
-					<td>6666666666</td>
-					<td>7777777</td>
-					<td ><i>删除</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>编辑</i></td>
-				</tr>
+		<% List list = (List)request.getAttribute("question_list");%>
+		<%out.print(list);%>
+		<% 
+		if(list!=null)
+		for(int i=0; i<list.size(); i++){
+			ExamAddVO vo = (ExamAddVO)list.get(i);%>
+			<tr align="center">
+			<td><%=vo.getId() %></td>
+			<td><%=vo.getContans() %></td>
+			<td><%=vo.getAnswerA() %></td>
+			<td><%=vo.getAnswerB() %></td>
+			<td><%=vo.getAnswerC() %></td>
+			<td><%=vo.getAnswerD() %></td>
+			<td><%=vo.getAnswer() %></td>
+			</tr>
+		<% } %>
+
+
 		</table>
 	
 	</form>

@@ -1,13 +1,18 @@
 package com.sts.controller.exam;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sts.manager.impl.ExamAddIMP;
+import com.sts.manager.impl.ExamManagerIMP;
+import com.sts.manager.inteface.ExamManagerInterface;
+import com.sts.tools.Tools;
 import com.sts.vo.ExamAddVO;
 
 /**
@@ -29,17 +34,26 @@ public class QuestionController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String method = request.getParameter("method");
+		if(Tools.objectIsNullOrNot(method)){
+			ExamManagerInterface getlist = new ExamManagerIMP();
+			try {
+				ExamAddVO vo = new ExamAddVO();
+				List<ExamAddVO> question_list = getlist.getExamList();
+				request.setAttribute("exam_vo", vo);
+				request.setAttribute("question_list", question_list);
+				request.getRequestDispatcher("/admin/question.jsp").forward(request, response);
+				return;
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+		}
 		if(method.equals("add")){
-			ExamAddIMP add = new ExamAddIMP();
+			ExamManagerIMP add = new ExamManagerIMP();
 			ExamAddVO vo = new ExamAddVO();
 			vo.setContans(request.getParameter("question_content"));
 			vo.setAnswerA(request.getParameter("answer_a"));
@@ -50,6 +64,15 @@ public class QuestionController extends HttpServlet {
 			add.addExam(vo);
 			response.sendRedirect("/admin/question.jsp");
 		}
+	
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
 	}
 
 }

@@ -54,4 +54,15 @@ public class ExamDAO extends BasicDAO{
 		this.closeConnection();
 	}
 	
+	public List<ExamAddVO> getExamById(int id) throws ClassNotFoundException, SQLException{
+		List<ExamAddVO> list = getExamList();
+		for(ExamAddVO vo:list){
+			if(vo.getId()==id){
+				return (List<ExamAddVO>) vo;
+			}
+		}
+		return null;
+		
+	}
+	
 }

@@ -45,4 +45,13 @@ public class ExamDAO extends BasicDAO{
 		return list;
 	}
 	
+	
+	public void deleteExam(ExamAddVO vo) throws ClassNotFoundException, SQLException{
+		String sql = "DELETE FROM exam where id=?";
+		PreparedStatement pstm = getPreparedStatement(sql);
+		pstm.setInt(1, vo.getId());
+		pstm.execute();
+		this.closeConnection();
+	}
+	
 }

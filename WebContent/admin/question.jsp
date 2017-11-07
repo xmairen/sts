@@ -97,19 +97,10 @@ function add_question(){
 				<th>正确答案</th>
 				<th>操作</th>
 			</thead>
-				<tr align="center">
-					<td>1111111</td>					
-					<td>2222222222</td>
-					<td>3333333</td>
-					<td>4444444444</td>
-					<td>55555555</td> 
-					<td>6666666666</td>
-					<td>7777777</td>
-					<td ><i>删除</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>编辑</i></td>
-				</tr>
-				</tr>
+
+		
 		<% List list = (List)request.getAttribute("question_list");%>
-		<%out.print(list);%>
+		
 		<% 
 		if(list!=null)
 		for(int i=0; i<list.size(); i++){
@@ -122,6 +113,7 @@ function add_question(){
 			<td><%=vo.getAnswerC() %></td>
 			<td><%=vo.getAnswerD() %></td>
 			<td><%=vo.getAnswer() %></td>
+			<td ><a href="/admin/QuestionController?method=delete&id=<%=vo.getId() %>"><i>删除</i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/QuestionController?method=modify&id=<%=vo.getId() %>"><i>编辑</i></a></td>
 			</tr>
 		<% } %>
 

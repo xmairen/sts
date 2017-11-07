@@ -62,7 +62,15 @@ public class QuestionController extends HttpServlet {
 			vo.setAnswerD(request.getParameter("answer_d"));
 			vo.setAnswer(request.getParameter("answer"));
 			add.addExam(vo);
-			response.sendRedirect("/admin/question.jsp");
+			response.sendRedirect("/admin/QuestionController");
+		}
+		
+		if(method.equals("delete")){
+			ExamManagerIMP delete = new ExamManagerIMP();
+			ExamAddVO vo = new ExamAddVO();
+			vo.setId(Integer.parseInt(request.getParameter("id")));
+			delete.deleteExam(vo);
+			response.sendRedirect("/admin/QuestionController");
 		}
 	
 	}

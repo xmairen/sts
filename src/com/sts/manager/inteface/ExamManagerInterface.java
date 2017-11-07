@@ -8,4 +8,5 @@ import com.sts.vo.ExamAddVO;
 public interface ExamManagerInterface {
 	public void addExam(ExamAddVO vo);
 	public List<ExamAddVO> getExamList() throws ClassNotFoundException, SQLException;
+	public void deleteExam(ExamAddVO vo);
 }

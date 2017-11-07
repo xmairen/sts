@@ -30,6 +30,19 @@ public class ExamManagerIMP implements ExamManagerInterface{
 		return dao.getExamList();
 	}
 	
+	@Override
+	public void deleteExam(ExamAddVO vo) {
+		ExamDAO dao = new ExamDAO();
+		try {
+			dao.deleteExam(vo);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+	}
+	
 
 	}
 

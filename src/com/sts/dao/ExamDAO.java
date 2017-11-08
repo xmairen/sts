@@ -21,6 +21,7 @@ public class ExamDAO extends BasicDAO{
 		pstm.setString(5, vo.getAnswerD());
 		pstm.setString(6, vo.getAnswer());
 		pstm.execute();
+		System.out.println(sql);
 		this.closeConnection();
 	}
 	

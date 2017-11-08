@@ -9,7 +9,7 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 public class BasicDAO {
-	 static String url = "jdbc:mysql://127.0.0.1:3308/sts";
+	 static String url = "jdbc:mysql://127.0.0.1:3308/sts?useUnicode=true&characterEncoding=utf-8";
 	 static String password = "123";
 	 static String user = "root";
 	
